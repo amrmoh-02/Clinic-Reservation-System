@@ -1,0 +1,35 @@
+Organization ID:
+
+654e680bf2c0a85d34965c62
+
+Organization Name:
+
+Maryam's Org - 2023-11-10
+
+Email Adress:
+
+maryam.khamis.elkadi@gmail.com
+
+Project ID:
+
+654e680bf2c0a85d34965c71
+
+Project Name:
+
+Project 0
+
+Project Link:
+
+https://cloud.mongodb.com/v2/654e680bf2c0a85d34965c71#/clusters
+
+ClusterName:
+
+Cluster0
+
+username: Maryam Khamis
+
+password: maryam.elkadi4
+
+Collections:
+
+doctor, patient, appointments, users

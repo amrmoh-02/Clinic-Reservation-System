@@ -1,0 +1,39 @@
+build image from docker file for (backend, frontend, database):
+
+docker build -t backend-image-2 -f C:\Users\LENOVO\Newfolder\golang.dockerfile .
+docker build -t frontend-image -f C:\Users\LENOVO\Newfolder\frontend.dockerfile .
+docker build -t mongo -f C:\Users\LENOVO\Newfolder\database.dockerfile .
+
+create containers for (backend, frontend, database):
+docker run -d -p 2717:27017 --name mongo mongo
+docker run -d -p 8080:80 --name backend-container backend-image-2:latest
+docker run -d -p 8080:80 --name frontend-container frontend-image:latest
+
+copy main project inside containers:
+
+docker cp C:\Users\LENOVO\Newfolder\package_main.go backend-container:gopackagemain
+
+Enter MongoDB container and find data:
+
+docker exec -it mongo bash
+mongosh
+show dbs
+use hospital
+db.doctor.find()
+
+(optional) add data to DB:
+
+db.doctor.insert({"id":"3","name":"dr.name","schedule":["friday","monday"]})
+
+create and connect to network:
+
+docker network create network
+
+docker network connect network1 mongo
+
+show connected containers to specific network:
+
+docker inspect network1
+or
+docker inspect <container-name>
+

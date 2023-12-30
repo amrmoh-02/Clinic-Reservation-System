@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('CI') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: '77b091de-1759-4505-a69d-87881661b33a', usernameVariable: 'mariamelkhalifa', passwordVariable: 'mariamo@1032023')]) {
+                        git branch: 'main', url: 'https://github.com/MariamAbdelazim/backend-image'
+                        sh '''
+                            docker login -u MariamAbdelazim -p mariamo@1032023
+                            docker build -f backend.dockerfile -t backend-image D:\\Level4\\term1\\Tools3\\TOOLS_3\\TOOLS\\backend
+                            docker push backend-image
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('CD') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: '77b091de-1759-4505-a69d-87881661b33a', usernameVariable: 'mariamelkhalifa', passwordVariable: 'mariamo@1032023')]) {
+                        git branch: 'main', url: 'https://github.com/MariamAbdelazim/backend-image'
+                        sh '''
+                            docker login -u MariamAbdelazim -p mariamo@1032023
+                            pwd
+                            docker run -d -p 8080:8080 backend-image
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}
